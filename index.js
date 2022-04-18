@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 console.log();
 const app = express()
-const port = 4000;
+const port = process.env.port;
 
 
 const movie = [
