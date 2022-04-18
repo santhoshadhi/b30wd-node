@@ -2,10 +2,11 @@
 import express from "express";
 import { MongoClient, MongoErrorLabel } from "mongodb";
 import dotenv from 'dotenv';
+import cors from 'cors';
 dotenv.config();
 console.log();
 const app = express()
-const port = process.env.port;
+const PORT = process.env.PORT;
 
 
 const movie = [
@@ -37,6 +38,8 @@ const movie = [
     "id": "106",
     "name": "Ratatouille", "poster": "https://resizing.flixster.com/gL_JpWcD7sNHNYSwI1ff069Yyug=/ems.ZW1zLXByZC1hc3NldHMvbW92aWVzLzc4ZmJhZjZiLTEzNWMtNDIwOC1hYzU1LTgwZjE3ZjQzNTdiNy5qcGc=", "rating": 8, "summary": "Remy, a rat, aspires to become a renowned French chef. However, he fails to realise that people despise rodents and will never enjoy a meal cooked by him.", "trailer": "https://www.youtube.com/embed/NgsQ8mVkN8w"
   }]
+app.use(cors())
+
 app.use(express.json()); //middleware-->intercept-->convertin body to json
 
 
@@ -105,6 +108,6 @@ app.put("/movies/:id", async function (request, response) {
 });
 
 
-app.listen(port, () => console.log(`server connected in ${port}`));
+app.listen(PORT, () => console.log(`server connected in ${PORT}`));
 
 
